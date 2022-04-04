@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação de Informática</title>
+    <style>
+        body{
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        .correçao{
+            display: none;
+            width: 45%;
+            transform: translate(50%);
+            border-width: 15px;
+            border-color: rgb(0, 184, 212);
+            border-style: outset;
+        }
+        .corpo{
+            border-color: rgb(255, 179, 0);
+            border-style: outset;
+            border-width: 15px;
+            width: 45%;
+            height: 80%;
+            transform: translate(50%);
+            
+        }
+        h1, h3{
+            color: rgb(100, 221, 23);
+        }
+        #nome{
+            width: 300px;
+        }
+        #cursos{
+            width: 430px;
+            height: 50px;
+        }
+        button{
+            color: black;
+            width: 70px;
+            border-radius: 22px;
+            background: rgb(118, 255, 3);
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <fieldset class="corpo">
+            <h1> Avaliação de Java Script </h1>
+            <label for="name">Nome: </label>
+            <input type="text" name="txt" id="nome"> <br>
+            <label for="turma">Turma: </label>
+            <select name="info" id="info">
+                <option value="1º ano de informática">1º ano de informática</option>
+                <option value="2º ano de informática">2º ano de informática</option>
+                <option value="3º ano de informática">3º ano de informática</option>
+            </select>
+            <div>
+                <p><b>1º-</b> Quais cursos são ofertados na EEEP Amélia Figueiredo de Lavor ?</p>
+                <input type="textarea" name="cursos" id="cursos">
+            </div>
+            <div>
+                <p><b>2º-</b> Marque as opções que possui os sistemas de numerações novos que aprendemos no 1º de Informática.</p>
+                <input type="Checkbox" id="Octal"> 
+                <label for="Octal"> Sistema Octal </label> <br>          
+                <input type="Checkbox" id="Binario"> 
+                <label for="Binario"> Sistema Binário </label> <br>            
+                <input type="Checkbox" id="Decimal"> 
+                <label for="Decimal"> Sistema Decimal </label> <br>              
+                <input type="Checkbox" id="Hexadecimal"> 
+                <label for="Hexadecimal"> Algarismos Hexadecimal </label> <br>
+            </div>
+            <div>
+                <p><b>3°-</b> Qual o produto abaixo é mais adequado para limpar uma memória RAM ?</p>
+                <input type="radio" name="terQues" id="alcool"> 
+                <label for="alcool"> Álcool Isopropílico </label> <br>            
+                <input type="radio" name="terQues" id="limpaCtt"> 
+                <label for="LimpaCtt"> Limpa Contato </label> <br>            
+                <input type="radio" name="terQues" id="alcool70"> 
+                <label for="alcool70"> Álcool 70% </label> <br>            
+                <input type="radio" name="terQues" id="H2O"> 
+                <label for="H2O"> Água </label> <br>
+            </div>
+            <div>
+                <p><b>4º-</b> Podemos afirmar que o modo de funcionamento de memória RAM em DUAL CHANEL só pode ser feito com pares de módulos de memória. Marque se a afirmação é verdade ou falsa. </p>
+                <input type="radio" name="quarQues" id="Vdd"> 
+                <label for="Vdd"> Verdadeira </label> <br>           
+                <input type="radio" name="quarQues" id="Fal"> 
+                <label for="Fal"> Falsa </label><br>
+            </div>
+            <br>
+            <div>
+                <button type="button" onclick="corrigir()"> Corrigir </button>
+            </div>
+        </fieldset>
+
+        <fieldset class="correçao">
+            <div>
+                <h3>Correção</h3>
+                <div class="questions" id="camName"></div>
+                <div class="questions" id="camTurma"></div>
+                <div class="questions" id="camQ01"> Primeira questão:
+                    <span id="q1res"></span>
+                </div>
+                <div class="questions" id="camQ02">Segunda questão: 
+                    <div id="res01"></div>
+                    <div id="res02"></div>
+                    <div id="res03"></div>
+                    <div id="res04"></div>
+                </div>
+                <div class="questions" id="camQ03"> Terceira questão:
+                    <span id="q3res"></span>
+                </div>
+                <div class="questions" id="camQ04"> Quarta questão:
+                    <span id="q4res"></span>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <script>
+        function corrigir(){
+            document.querySelector(".correçao").style.display = "block";
+            // nome
+            let camNome = document.getElementById("nome").value;
+            document.getElementById("camName").innerHTML = ("Aluno: " + camNome);
+            // turma
+            let camTur = document.getElementById("info").value;
+            document.getElementById("camTurma").innerHTML = ("Turma: " + camTur);
+            // primeira questão
+            let camTextAre = document.getElementById("cursos").value;
+            if (camTextAre.includes("Informática","Enfermagem","Administração")){
+                // console.log("correta");
+                document.getElementById("q1res").innerHTML = ("correta")
+            } else {
+                // console.log("incorreta");
+                document.getElementById("q1res").innerHTML = ("Incorreta")
+            }
+            // segunda questão
+            let sisOc = document.getElementById("Octal");
+            let sisBin = document.getElementById("Binario");
+            let sisDec = document.getElementById("Decimal");
+            let sisHex = document.getElementById("Hexadecimal");
+
+            if (sisOc.checked){
+                document.getElementById("res01").innerHTML = "Sistema octal: Resposta incorreta"
+            } if (sisBin.checked){
+                document.getElementById("res02").innerHTML = "Sistema binário: Resposta correta"
+            } if (sisDec.checked){
+                document.getElementById("res03").innerHTML = "Sistema decimal: Resposta correta"
+            } if (sisHex.checked){
+                document.getElementById("res04").innerHTML = "Sistema hexadecimal: Resposta correta"
+            }
+            // terceira questão
+            if(document.getElementById("alcool").checked){
+                document.getElementById("q3res").innerHTML = ("Resposta errada.")
+            } if(document.getElementById("limpaCtt").checked){
+                document.getElementById("q3res").innerHTML = ("Resposta correta.")
+            } if(document.getElementById("alcool70").checked){
+                document.getElementById("q3res").innerHTML = ("Resposta errada.")
+            } if (document.getElementById("H2O").checked){
+                document.getElementById("q3res").innerHTML = ("Resposta errada.")
+            }
+            // quarta questão
+            if (document.getElementById("Vdd").checked){
+                document.getElementById("q4res").innerHTML = ("Resposta correta.")
+            } if (document.getElementById("Fal").checked){
+                document.getElementById("q4res").innerHTML = ("Resposta errada.")
+            }
+        }
+    </script>
+</body>
+</html>
